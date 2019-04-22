@@ -1,0 +1,78 @@
+<kendo-dialog *ngIf="active" (close)="closeForm()">
+  <kendo-dialog-titlebar>
+    {{ isNew ? 'Add new rule' : 'Edit rule' }}
+  </kendo-dialog-titlebar>
+
+  <div class="container">
+    <form novalidate [formGroup]="editForm">
+      <div class="form-group">
+        <label>ID:</label>
+        <input type="text" class="k-textbox form-control form-control-sm" formControlName="ruleId" disabled />
+      </div>
+      <div class="form-group">
+        <label>Expression:</label>
+        <input type="text" class="k-textbox form-control form-control-sm" formControlName="matchExpression" required />
+      </div>
+      <div class="row">
+        <div class="form-group col">
+          <label>Start:</label>
+          <kendo-datepicker class="form-control form-control-sm" formControlName="startDtTm" [format]="'MM/dd/yyyy HH:mm'"></kendo-datepicker>
+        </div>
+        <div class="form-group col">
+          <label>End:</label>
+          <kendo-datepicker class="form-control form-control-sm" formControlName="endDtTm" [format]="'MM/dd/yyyy HH:mm'"></kendo-datepicker>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col">
+          <label>Asset Type:</label>
+          <input type="text" class="k-textbox form-control form-control-sm" formControlName="assetType" />
+        </div>
+        <div class="form-group col">
+          <label>Asset ID</label>
+          <input type="text" class="k-textbox form-control form-control-sm" formControlName="assetId" />
+        </div>
+        <div class="form-group col">
+          <label>Event Code:</label>
+          <kendo-dropdownlist [data]="events"
+                              class="form-control form-control-sm"
+                              formControlName="eventType"
+                              [defaultItem]="{id: '0', description: 'Select event code', code: null }"
+                              [textField]="'description'"
+                              [valueField]="'id'"
+                              [valuePrimitive]="false">
+          </kendo-dropdownlist>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Engines:</label>
+        <kendo-multiselect class="form-control form-control-sm"
+                           formControlName="engines"
+                           [data]="engineList"
+                           [textField]="'name'"
+                           [valueField]="'id'"
+                           [valuePrimitive]="false">
+        </kendo-multiselect>
+      </div>
+      <div class="row">
+        <div class="form-group col">
+          <label>Created:</label>
+          <kendo-datepicker class="form-control form-control-sm" formControlName="createDateTime" [disabled]="true" [format]="'MM/dd/yyyy HH:mm'"></kendo-datepicker>
+        </div>
+        <div class="form-group col">
+          <label>Created By</label>
+          <input type="text" class="k-textbox form-control form-control-sm" formControlName="createdById" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Manual:</label>
+        <kendo-switch formControlName="manualFlag"></kendo-switch>
+      </div>
+    </form>
+  </div>
+
+  <kendo-dialog-actions>
+    <button class="k-button" (click)="onCancel($event)">Cancel</button>
+    <button class="k-button k-primary" [disabled]="!editForm.valid" (click)="onSave($event)">Save</button>
+  </kendo-dialog-actions>
+</kendo-dialog>

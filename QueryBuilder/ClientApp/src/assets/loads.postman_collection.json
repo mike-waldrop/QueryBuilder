@@ -1,0 +1,57 @@
+{
+	"info": {
+		"_postman_id": "fbe3650f-bec4-437b-aa8f-a0d0eea05b2c",
+		"name": "loads",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "load list",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "client_id",
+						"value": "123",
+						"type": "text"
+					},
+					{
+						"key": "client_secret",
+						"value": "123",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://anypoint.mulesoft.com/mocking/api/v1/links/ef53a603-b5bb-497f-822b-0e4246620d2e/shipments/123/loads?view=landstarView",
+					"protocol": "https",
+					"host": [
+						"anypoint",
+						"mulesoft",
+						"com"
+					],
+					"path": [
+						"mocking",
+						"api",
+						"v1",
+						"links",
+						"ef53a603-b5bb-497f-822b-0e4246620d2e",
+						"shipments",
+						"123",
+						"loads"
+					],
+					"query": [
+						{
+							"key": "view",
+							"value": "landstarView"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

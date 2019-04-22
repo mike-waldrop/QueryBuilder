@@ -1,0 +1,72 @@
+[
+  {
+    "engines": [
+      "ENGINE-A",
+      "ENGINE-B",
+      "ENGINE-C",
+      "ENGINE-D"
+    ],
+    "ruleId": "754a1238-9513-4d63-ab75-e7c946deceba",
+    "assetType": "TRUCK",
+    "assetId": "25252525",
+    "eventType": "PING",
+    "sourceId": 0
+  },
+  {
+    "engines": [
+      "ENGINE-A",
+      "ENGINE-D"
+    ],
+    "ruleId": "08cc22fb-e0c8-42be-a5d7-d3d9bee69fee",
+    "assetType": "TRAILER",
+    "assetId": "12121212",
+    "eventType": "PING",
+    "sourceId": 0
+  },
+  {
+    "engines": [
+      "ENGINE-D"
+    ],
+    "id": "44d102fe-14e7-4ad5-aaaa-1dace549e0b7",
+    "assetType": "TRUCK",
+    "assetId": "45454545",
+    "eventType": "PING",
+    "sourceId": 0
+  },
+  {
+    "engines": [
+      "ENGINE-D"
+    ],
+    "ruleId": "44d102fe-14e7-4ad5-aaaa-1dace549e0b7",
+    "assetType": "TRUCK",
+    "assetId": "*",
+    "eventType": "PING",
+    "sourceId": 0
+  },
+  {
+    "engines": [
+      "ENGINE-A",
+      "ENGINE-B",
+      "ENGINE-C",
+      "ENGINE-D"
+    ],
+    "ruleId": "34ef5767-0db4-4b83-a655-8c0dccb91cfd",
+    "assetType": "*",
+    "assetId": "*",
+    "eventType": "*",
+    "sourceId": 0
+  },
+  {
+    "engines": [
+      "ENGINE-A",
+      "ENGINE-B",
+      "ENGINE-C",
+      "ENGINE-D"
+    ],
+    "ruleId": "e9b6299c-3257-4a81-bd6b-80b938bbec2c",
+    "assetType": "*",
+    "assetId": "*",
+    "eventType": "*",
+    "sourceId": 0
+  }
+]

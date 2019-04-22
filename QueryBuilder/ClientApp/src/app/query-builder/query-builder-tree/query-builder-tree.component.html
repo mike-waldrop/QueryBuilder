@@ -1,0 +1,18 @@
+<div class="lstr-tree-view">
+  <input [(ngModel)]="searchTerm" #category (keyup)='onkeyup(category.value)' placeholder="Search categories" />
+  <kendo-treeview textField="Text"
+                  [animate]="false"
+                  [nodes]="parsedData"
+                  [children]="children"
+                  [hasChildren]="hasChildren"
+                  [(selectedKeys)]="selectedKeys"
+                  (selectionChange)="handleSelection($event)"
+                  kendoTreeViewExpandable
+                  kendoTreeViewSelectable
+                  kendoTreeViewHierarchyBinding>
+    <!--<ng-template kendoTreeViewNodeTemplate let-dataItem>
+      <span [ngClass]="iconClass(dataItem)"></span>
+      {{dataItem.Text}}
+    </ng-template>-->
+  </kendo-treeview>
+</div>
