@@ -1,0 +1,27 @@
+.tree-view {
+  flex: 0 0 220px;
+  border: 1px solid red;
+  /*width:500px;*/
+  height:220px;
+}
+
+.conditions-view {
+  flex: 0 0 666px;
+  border: 1px solid blue;
+  /*width: 666px;*/
+  height: 500px;
+}
+.menu-view {
+  flex: 0 0 220px;
+  border: 1px solid black;
+  /*width:500px;*/
+  height:220px;
+}
+.container-view {
+  border: 1px dotted black;
+ 
+  display: flex;
+  flex-direction: column;
+}
+
+/*1174 851*/
