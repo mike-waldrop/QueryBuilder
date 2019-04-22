@@ -1,0 +1,13 @@
+.card{
+  height: 100%;
+  padding: 4px;
+}
+.card-header {
+  background-color: rgba(96, 147, 229, 0.5);
+  font: bold 12px arial,verdana;
+}
+
+.card-body {
+  background-color: rgba(96, 147, 229, 0.2);
+  /*overflow-y: scroll;*/
+}

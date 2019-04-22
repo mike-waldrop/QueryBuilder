@@ -6,6 +6,7 @@ using Landstar.Cloud.Models.Mulesoft.Transportation.Order;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using QueryBuilder.Shared;
 
 namespace QueryBuilder.Controllers
@@ -20,7 +21,7 @@ namespace QueryBuilder.Controllers
     {
       var settings = new JsonSerializerSettings
       {
-        ContractResolver = new LongNameContractResolver(),
+        ContractResolver = new CamelCasePropertyNamesContractResolver(),
         Formatting = Formatting.Indented,
         NullValueHandling = NullValueHandling.Ignore
       };

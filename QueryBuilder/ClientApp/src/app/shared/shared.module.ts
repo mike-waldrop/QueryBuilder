@@ -14,9 +14,10 @@ import { DateInputsModule } from "@progress/kendo-angular-dateinputs";
 import { ExcelExportModule } from "@progress/kendo-angular-excel-export";
 import { ScrollViewModule } from "@progress/kendo-angular-scrollview";
 import { LabelModule } from "@progress/kendo-angular-label";
+import { TileComponent } from './tile/tile.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [TileComponent],
   imports: [
     CommonModule,
     InputsModule,
@@ -51,7 +52,8 @@ import { LabelModule } from "@progress/kendo-angular-label";
     ScrollViewModule,
     LabelModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TileComponent
   ]
 })
 export class SharedModule {

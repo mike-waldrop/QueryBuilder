@@ -6,11 +6,22 @@ import { QueryBuilderTreeComponent } from './query-builder-tree/query-builder-tr
 import { SharedModule } from '@progress/kendo-angular-dropdowns';
 import { QueryBuilderService } from 'src/app/query-builder/services/query-builder.service/query-builder.service';
 import { TreeViewModule } from '@progress/kendo-angular-treeview';
+import { SharedModule as AppSharedModule } from 'src/app/shared/shared.module';
+import { QueryBuilderMenuComponent } from './query-builder-menu/query-builder-menu.component';
+import { QueryBuilderConditionsComponent } from './query-builder-conditions/query-builder-conditions.component';
+import { QueryBuilderResultsComponent } from './query-builder-results/query-builder-results.component';
+
 
 @NgModule({
-  declarations: [QueryBuilderRootComponent, QueryBuilderTreeComponent],
+  declarations: [
+    QueryBuilderRootComponent,
+    QueryBuilderTreeComponent,
+    QueryBuilderMenuComponent,
+    QueryBuilderConditionsComponent,
+    QueryBuilderResultsComponent],
   imports: [
     CommonModule,
+    AppSharedModule,
     SharedModule,
     QueryBuilderRoutingModule,
     TreeViewModule

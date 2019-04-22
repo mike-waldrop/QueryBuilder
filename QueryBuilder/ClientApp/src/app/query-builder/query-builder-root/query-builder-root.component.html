@@ -1,18 +1,39 @@
-<p>
-  query-builder-root works!
-</p>
+<div class="container">
+  <div class="grid-container">
+    <div class="main-view">
 
-<div class="container-view">
-  <div class="row">
-    <div class="tree-view">
-      <query-builder-tree></query-builder-tree>
+        <div class="tree-view">
+          <tile title="tree">
+            <query-builder-tree></query-builder-tree>
+          </tile>
+        </div>
+        <div class="central-view">
+          <div class="conditions-view">
+            <tile title="conditions">
+              <query-builder-conditions></query-builder-conditions>
+            </tile>
+          </div>
+          <div class="result-view">
+            <tile title="results">
+              <query-builder-results></query-builder-results>
+            </tile>
+          </div>
+        </div>
+        <div class="menu-view">
+          <tile title="menu">
+            <query-builder-menu></query-builder-menu>
+          </tile>
+        </div>
+
+      </div>
+    <div class="header-view">
+      header
     </div>
-    <div class="conditions-view">
-      conditions
-    </div>
-    <div class="menu-view">
-      menu
+    <div class="footer-view">
+      footer
     </div>
   </div>
 </div>
+
+
 

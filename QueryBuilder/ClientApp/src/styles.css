@@ -1,13 +1,6 @@
-.card { margin: 4px; }
-
-.oQueue .card-header { background-color: rgba(251, 186, 186, 0.2) !important; }
-
-.card-header { font-size: 11px; }
-
-.card-body {
-  font-size: 11px;
-  /*flex-grow: 1;*/
-  overflow-y: scroll;
+body {
+  background-image: url('assets/images/bg.png');
+  background-size: cover;
+  position: relative;
+  background-attachment: fixed;
 }
-
-button { margin: 3px; }

@@ -1,6 +1,6 @@
 <div class="lstr-tree-view">
   <input [(ngModel)]="searchTerm" #category (keyup)='onkeyup(category.value)' placeholder="Search categories" />
-  <kendo-treeview textField="Text"
+  <kendo-treeview textField="text"
                   [animate]="false"
                   [nodes]="parsedData"
                   [children]="children"
@@ -12,7 +12,7 @@
                   kendoTreeViewHierarchyBinding>
     <!--<ng-template kendoTreeViewNodeTemplate let-dataItem>
       <span [ngClass]="iconClass(dataItem)"></span>
-      {{dataItem.Text}}
+      {{dataItem.text}}
     </ng-template>-->
   </kendo-treeview>
 </div>

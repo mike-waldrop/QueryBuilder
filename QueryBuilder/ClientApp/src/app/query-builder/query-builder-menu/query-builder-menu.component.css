@@ -1,0 +1,18 @@
+.k-button {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  width: 160px;
+}
+
+.button-group {
+  padding: 10px;
+}
+
+.button-group div {
+  margin: 10px 0;
+ 
+}
+
+   
