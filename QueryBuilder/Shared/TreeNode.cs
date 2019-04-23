@@ -9,13 +9,10 @@ namespace QueryBuilder.Shared
     public string Text { get; set; }
     public TreeNode Parent { get; set; }
     public string FullPath { get; set; }
+    public string Type { get; set; }
     public List<TreeNode> Items { get; set; } = new List<TreeNode>();
 
-    public void Add(TreeNode item)
-    {
-      item.Parent = this;
-      Items.Add(item);
-    }
+    
 
   }
 }

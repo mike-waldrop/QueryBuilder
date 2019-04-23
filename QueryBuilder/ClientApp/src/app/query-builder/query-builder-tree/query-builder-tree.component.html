@@ -1,4 +1,24 @@
-<div class="lstr-tree-view">
+
+  <input [(ngModel)]="searchTerm" #category (keyup)='onkeyup(category.value)' placeholder="Search categories" />
+  
+    <kendo-treeview textField="text"
+                    [animate]="true"
+                    [nodes]="parsedData"
+                    [children]="children"
+                    [hasChildren]="hasChildren"
+                    kendoTreeViewExpandable
+                    kendoTreeViewHierarchyBinding>
+      <ng-template kendoTreeViewNodeTemplate let-dataItem>
+        {{dataItem.text}}
+        <span *ngIf="!(!!dataItem.items)">
+          <button kendoButton icon="plus" look="flat" (click)="onAddClick(dataItem)"></button>
+        </span>
+      </ng-template>
+    </kendo-treeview>
+  
+
+
+<!--<div class="lstr-tree-view">
   <input [(ngModel)]="searchTerm" #category (keyup)='onkeyup(category.value)' placeholder="Search categories" />
   <kendo-treeview textField="text"
                   [animate]="false"
@@ -9,10 +29,13 @@
                   (selectionChange)="handleSelection($event)"
                   kendoTreeViewExpandable
                   kendoTreeViewSelectable
-                  kendoTreeViewHierarchyBinding>
-    <!--<ng-template kendoTreeViewNodeTemplate let-dataItem>
+                  kendoTreeViewHierarchyBinding
+                  [kendoTreeViewCheckable]="checkableSettings"
+                  [(checkedKeys)]="checkedKeys"
+                  (checkedChange)="handleChecking($event)">
+    <ng-template kendoTreeViewNodeTemplate let-dataItem>
       <span [ngClass]="iconClass(dataItem)"></span>
       {{dataItem.text}}
-    </ng-template>-->
+    </ng-template>
   </kendo-treeview>
-</div>
+</div>-->

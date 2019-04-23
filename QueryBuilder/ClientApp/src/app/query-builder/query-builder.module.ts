@@ -10,6 +10,7 @@ import { SharedModule as AppSharedModule } from 'src/app/shared/shared.module';
 import { QueryBuilderMenuComponent } from './query-builder-menu/query-builder-menu.component';
 import { QueryBuilderConditionsComponent } from './query-builder-conditions/query-builder-conditions.component';
 import { QueryBuilderResultsComponent } from './query-builder-results/query-builder-results.component';
+import { EventsService } from 'src/app/query-builder/services/events.service/events.service';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { QueryBuilderResultsComponent } from './query-builder-results/query-buil
     TreeViewModule
   ],
   providers: [
-    QueryBuilderService
+    QueryBuilderService,
+    EventsService
   ],
   exports: [
   ]

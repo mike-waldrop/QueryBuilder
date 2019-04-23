@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { of } from 'rxjs/observable/of';
 import { Observable } from 'rxjs/Observable';
 import { QueryBuilderService } from 'src/app/query-builder/services/query-builder.service/query-builder.service';
-
-const is = (fileName: string, ext: string) => new RegExp(`.${ext}\$`).test(fileName);
+import { CheckableSettings, TreeItemLookup } from '@progress/kendo-angular-treeview';
+import { EventsService } from 'src/app/query-builder/services/events.service/events.service';
+import { Condition } from 'src/app/query-builder/services/condition.model';
+import { Operators } from 'src/app/query-builder/services/Operators';
 
 
 @Component({
@@ -14,10 +16,13 @@ const is = (fileName: string, ext: string) => new RegExp(`.${ext}\$`).test(fileN
 export class QueryBuilderTreeComponent {
   
   public data: any[];
+  public searchTerm = '';
   public parsedData: any[] = this.data;
   public selectedKeys: any[] = ['3_2'];
+  public checkedKeys: any[] = ['1'];
+    
   
-  constructor(private qbSvc: QueryBuilderService) { }
+  constructor(private qbSvc: QueryBuilderService, private eventsSvc: EventsService) { }
 
   ngOnInit(): void {
     this.qbSvc.getModel().subscribe(a => {
@@ -26,23 +31,14 @@ export class QueryBuilderTreeComponent {
     });
    
   }
+   
 
-  public handleSelection({ index, dataItem }: any): void {
-    this.selectedKeys = [index];
+  onAddClick(dataItem) {
+    var condition = new Condition(dataItem.fullPath, Operators.EqualTo, "whatever");
+    this.qbSvc.addCondition(condition);
   }
-
-  public iconClass({ text, items }: any): any {
-    return {
-      'k-i-file-pdf': is(text, 'pdf'),
-      'k-i-folder': items !== undefined,
-      'k-i-html': is(text, 'html'),
-      'k-i-image': is(text, 'jpg|png'),
-      'k-icon': true
-    };
-  }
-
-  public searchTerm = '';
-
+     
+  
   public onkeyup(value: string): void {
     this.parsedData = this.search(this.data, value);
   }
@@ -66,20 +62,11 @@ export class QueryBuilderTreeComponent {
   public contains(text: string, term: string): boolean {
     return text.toLowerCase().indexOf(term.toLowerCase()) >= 0;
   }
-
-  /**
-   * A function that returns an observable instance which contains the
-   * [child nodes](https://www.telerik.com/kendo-angular-ui/components/treeview/api/TreeViewComponent/#toc-children)
-   * for a given parent node.
-   */
+   
   public children = (dataitem: any): Observable<any[]> => {
     return of(dataitem.items);
   };
-
-  /**
-   * A function that determines whether a given node
-   * [has children](https://www.telerik.com/kendo-angular-ui/components/treeview/api/TreeViewComponent/#toc-haschildren).
-   */
+    
   public hasChildren = (dataitem: any): boolean => {
     return !!dataitem.items;
   };

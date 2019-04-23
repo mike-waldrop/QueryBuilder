@@ -1,8 +1,14 @@
 .k-treeview{
 /*background-color: cornsilk;*/
+height:660px;
 }
 
 /*.lstr-tree-view{
   border:2px solid black;
 }*/
+
+.treeview-wrapper {
+  /*max-width: 300px;
+  margin: 0 auto;*/
+}
 

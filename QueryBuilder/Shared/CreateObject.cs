@@ -25,6 +25,7 @@ namespace QueryBuilder.Shared
         var newNode = new TreeNode();
         newNode.Text = pi.Name;
         newNode.FullPath += $"{td.FullPath}.{pi.Name}";
+        
         if (pi.PropertyType.IsClass && pi.PropertyType.Namespace != "System")
         {
           if (pi.PropertyType.IsArray)
@@ -39,6 +40,7 @@ namespace QueryBuilder.Shared
         else
         {
           newNode.Items = null;
+          newNode.Type = pi.PropertyType.ToString();
         }
         td.Items.Add(newNode);
       }

@@ -1,3 +1,22 @@
-<p>
-  query-builder-conditions works!
-</p>
+<!--<div>
+  <div class="condition row" *ngFor="let qm of (query | async)?.conditions; let i = index">
+    <div class="col">{{qm.key}}</div>
+    <div class="col">{{qm.operator}}</div>
+    <div class="col">{{qm.value}}</div>
+  </div>
+</div>-->
+
+<kendo-treeview textField="key"
+                [animate]="true"
+                [nodes]="(query | async)?.conditions"
+                
+                kendoTreeViewHierarchyBinding
+                childrenField="items">
+  <ng-template kendoTreeViewNodeTemplate let-dataItem>
+    <div class="row condition">
+      <div class="col">{{dataItem.key}}</div>
+      <div class="col">{{dataItem.operator}}</div>
+      <div class="col">{{dataItem.value}}</div>
+    </div>
+  </ng-template>
+</kendo-treeview>
