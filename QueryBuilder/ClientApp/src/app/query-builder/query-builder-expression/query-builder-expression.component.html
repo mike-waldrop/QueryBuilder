@@ -1,0 +1,50 @@
+<div *ngIf="condition" class="row condition grid-container">
+  <div class="text-view">
+    <ng-container *ngTemplateOutlet="keyEditMode; context:{data: condition}"></ng-container>
+  </div>
+  <div class="operator-view">
+    <ng-container *ngTemplateOutlet="operatorEditMode; context:{data: condition}"></ng-container>
+  </div>
+  <div class="value-view">
+    <ng-container *ngTemplateOutlet="valueEditMode; context:{data: condition}"></ng-container>
+  </div>
+  <div class="btn-delete-view">
+    <button kendoButton icon="minus" look="flat" (click)="onRemoveClick(condition)"></button>
+  </div>
+  <div class="btn-add-view">
+    <button kendoButton icon="plus" look="flat" (click)="onAddClick(condition)"></button>
+  </div>
+</div>
+
+<ng-template #keyEditMode let-data="data">
+  <div #target>
+    {{data.text}}
+  </div>
+  <kendo-contextmenu [target]="target" [items]="qbSvc.modelDataCurrent | async" showOn="click">
+  </kendo-contextmenu>
+</ng-template>
+
+<ng-template #operatorEditMode let-data="data">
+  <kendo-dropdownlist [(ngModel)]="data.operator"
+                      [defaultItem]="defaultItem"
+                      [data]="operatorList"
+                      [textField]="'text'"
+                      [valuePrimitive]="true"
+                      [valueField]="'value'" class="qb-dropdown">
+  </kendo-dropdownlist>
+</ng-template>
+
+<ng-template #valueEditMode let-data="data">
+  <input kendoTextBox [(ngModel)]="data.value" class="qb-textbox"/>
+</ng-template>
+
+
+
+
+<ng-template #keyStaticMode let-data="data">{{data.text}}</ng-template>
+<ng-template #operatorStaticMode let-data="data">{{data.operator}}</ng-template>
+<ng-template #valueStaticMode let-data="data">{{data.value}}</ng-template>
+
+
+
+

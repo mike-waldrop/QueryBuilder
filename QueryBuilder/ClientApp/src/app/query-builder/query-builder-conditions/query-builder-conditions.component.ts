@@ -22,10 +22,10 @@ export class QueryBuilderConditionsComponent implements OnInit {
   }
 
   public children = (dataitem: any): Observable<any[]> => {
-    return of(dataitem.items);
+    return of(dataitem.conditions);
   };
 
   public hasChildren = (dataitem: any): boolean => {
-    return !!dataitem.items;
+    return !!dataitem.conditions;
   };
 }

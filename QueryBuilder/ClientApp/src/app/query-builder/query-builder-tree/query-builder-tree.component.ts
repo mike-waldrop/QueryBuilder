@@ -5,7 +5,7 @@ import { QueryBuilderService } from 'src/app/query-builder/services/query-builde
 import { CheckableSettings, TreeItemLookup } from '@progress/kendo-angular-treeview';
 import { EventsService } from 'src/app/query-builder/services/events.service/events.service';
 import { Condition } from 'src/app/query-builder/services/condition.model';
-import { Operators } from 'src/app/query-builder/services/Operators';
+import { Operators } from 'src/app/query-builder/services/operators.model';
 
 
 @Component({
@@ -18,23 +18,20 @@ export class QueryBuilderTreeComponent {
   public data: any[];
   public searchTerm = '';
   public parsedData: any[] = this.data;
-  public selectedKeys: any[] = ['3_2'];
-  public checkedKeys: any[] = ['1'];
-    
+      
   
   constructor(private qbSvc: QueryBuilderService, private eventsSvc: EventsService) { }
 
   ngOnInit(): void {
-    this.qbSvc.getModel().subscribe(a => {
+    this.qbSvc.modelDataCurrent.subscribe(a => {
       this.data = a;
       this.parsedData = this.data;
     });
-   
   }
    
 
   onAddClick(dataItem) {
-    var condition = new Condition(dataItem.fullPath, Operators.EqualTo, "whatever");
+    var condition = new Condition(dataItem.text, dataItem.fullPath, Operators.EqualTo, "whatever");
     this.qbSvc.addCondition(condition);
   }
      

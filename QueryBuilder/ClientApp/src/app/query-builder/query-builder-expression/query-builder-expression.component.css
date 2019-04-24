@@ -1,0 +1,56 @@
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 150px 150px 150px 30px 30px;
+  grid-template-rows: 1fr;
+  grid-template-areas: "text-view operator-view value-view btn-delete-view btn-add-view";
+}
+
+.text-view {
+  grid-area: text-view;
+}
+
+.operator-view {
+  grid-area: operator-view;
+}
+
+.value-view {
+  grid-area: value-view;
+}
+
+.btn-delete-view {
+  grid-area: btn-delete-view;
+}
+
+.btn-add-view {
+  grid-area: btn-add-view;
+}
+
+
+.condition {
+  background-color: rgba(219, 220, 209, 0.5);
+  margin-bottom: 3px;
+  border-radius: 5px;
+  font-size: small;
+  /*width:100%;*/
+}
+
+/*.condition div{
+  width:200px;
+}*/
+
+.qb-dropdown{
+  width: 120px;
+}
+
+.qb-textbox {
+  width: 120px;
+}
+
+/*.k-in {
+  width: 100% !important;
+}
+
+.k-mid {
+  width: 100% !important;
+}*/

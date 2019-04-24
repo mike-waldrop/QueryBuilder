@@ -11,6 +11,7 @@ import { QueryBuilderMenuComponent } from './query-builder-menu/query-builder-me
 import { QueryBuilderConditionsComponent } from './query-builder-conditions/query-builder-conditions.component';
 import { QueryBuilderResultsComponent } from './query-builder-results/query-builder-results.component';
 import { EventsService } from 'src/app/query-builder/services/events.service/events.service';
+import { QueryBuilderExpressionComponent } from './query-builder-expression/query-builder-expression.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { EventsService } from 'src/app/query-builder/services/events.service/eve
     QueryBuilderTreeComponent,
     QueryBuilderMenuComponent,
     QueryBuilderConditionsComponent,
-    QueryBuilderResultsComponent],
+    QueryBuilderResultsComponent,
+    QueryBuilderExpressionComponent],
   imports: [
     CommonModule,
     AppSharedModule,

@@ -1,6 +1,7 @@
 .card{
   height: 100%;
   padding: 4px;
+  
 }
 .card-header {
   background-color: rgba(96, 147, 229, 0.5);
@@ -9,5 +10,6 @@
 
 .card-body {
   background-color: rgba(96, 147, 229, 0.2);
+  /*overflow: scroll;*/
   /*overflow-y: scroll;*/
 }

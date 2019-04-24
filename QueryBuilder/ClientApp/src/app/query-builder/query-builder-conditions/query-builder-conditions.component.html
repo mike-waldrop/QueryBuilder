@@ -9,14 +9,9 @@
 <kendo-treeview textField="key"
                 [animate]="true"
                 [nodes]="(query | async)?.conditions"
-                
                 kendoTreeViewHierarchyBinding
-                childrenField="items">
+                childrenField="conditions">
   <ng-template kendoTreeViewNodeTemplate let-dataItem>
-    <div class="row condition">
-      <div class="col">{{dataItem.key}}</div>
-      <div class="col">{{dataItem.operator}}</div>
-      <div class="col">{{dataItem.value}}</div>
-    </div>
+    <query-builder-expression [condition]="dataItem"></query-builder-expression>
   </ng-template>
 </kendo-treeview>

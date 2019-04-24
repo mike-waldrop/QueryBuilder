@@ -7,6 +7,7 @@ import { ButtonsModule } from "@progress/kendo-angular-buttons";
 import { DropDownsModule } from "@progress/kendo-angular-dropdowns";
 import { ChartsModule } from "@progress/kendo-angular-charts";
 import { DialogsModule } from "@progress/kendo-angular-dialog";
+import { ContextMenuModule  } from '@progress/kendo-angular-menu';
 import { GridModule } from "@progress/kendo-angular-grid";
 import { LayoutModule } from "@progress/kendo-angular-layout";
 import { PopupModule } from "@progress/kendo-angular-popup";
@@ -29,6 +30,7 @@ import { TileComponent } from './tile/tile.component';
     GridModule,
     LayoutModule,
     PopupModule,
+    ContextMenuModule,
     DateInputsModule,
     ExcelExportModule,
     ScrollViewModule,
@@ -47,6 +49,7 @@ import { TileComponent } from './tile/tile.component';
     GridModule,
     LayoutModule,
     PopupModule,
+    ContextMenuModule,
     DateInputsModule,
     ExcelExportModule,
     ScrollViewModule,
