@@ -37,6 +37,15 @@ export class QueryBuilderService {
     this.querySource.next(this.query);
   }
 
+  editCondition(message: Condition) {
+    let index = message.arrayOwner.indexOf(message);
+    if (index !== -1) {
+      message.arrayOwner[index] = message;
+      this.querySource.next(this.query);
+    }
+
+  }
+
   removeCondition(message: Condition) {
     let index = message.arrayOwner.indexOf(message);
     if (index !== -1) {

@@ -1,9 +1,13 @@
 
 .grid-container {
   display: grid;
-  grid-template-columns: 150px 150px 150px 30px 30px;
+  grid-template-columns: 100px 150px 140px 150px 30px 30px;
   grid-template-rows: 1fr;
-  grid-template-areas: "text-view operator-view value-view btn-delete-view btn-add-view";
+  grid-template-areas: "conjunction-view text-view operator-view value-view btn-delete-view btn-add-view";
+}
+
+.conjunction-view {
+  grid-area: conjunction-view;
 }
 
 .text-view {
@@ -39,8 +43,12 @@
   width:200px;
 }*/
 
-.qb-dropdown{
+.qb-operator-dropdown{
   width: 120px;
+}
+
+.qb-conjunction-dropdown {
+  width: 80px;
 }
 
 .qb-textbox {

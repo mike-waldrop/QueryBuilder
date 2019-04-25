@@ -3,6 +3,7 @@ import { Condition } from "src/app/query-builder/services/condition.model";
 import { Operators } from 'src/app/query-builder/services/operators.model';
 import { Container } from '@angular/compiler/src/i18n/i18n_ast';
 import { QueryBuilderService } from 'src/app/query-builder/services/query-builder.service/query-builder.service';
+import { Conjunctions } from 'src/app/query-builder/services/conjunctions.model';
 
 @Component({
   selector: 'query-builder-expression',
@@ -11,6 +12,11 @@ import { QueryBuilderService } from 'src/app/query-builder/services/query-builde
 })
 export class QueryBuilderExpressionComponent implements OnInit {
   @Input() condition: Condition;
+
+  conjunctionList: Array<{ text: string, value: Conjunctions }> = [
+    { text: "and", value: Conjunctions.and },
+    { text: "or", value: Conjunctions.or },
+  ];
   
   operatorList: Array<{text:string ,value: Operators}> = [
     { text: "Contains", value: Operators.Contains },
@@ -30,8 +36,22 @@ export class QueryBuilderExpressionComponent implements OnInit {
     this.qbSvc.removeCondition(event$);
   }
 
-  onAddClick(event$: Condition) {
+  onAddConditionClick(event$: Condition) {
     this.qbSvc.addNewCondition(event$);
+  }
+
+ onSelectKeyClick(model:any, selected: Condition) {
+   selected.key = model.fullPath;
+   selected.text = model.text;
+   this.qbSvc.editCondition(selected);
+  }
+
+  operatorChange($event, selected: Condition) {
+    this.qbSvc.editCondition(this.condition);
+  }
+
+  onValueChanged(data: string) {
+    this.qbSvc.editCondition(this.condition);
   }
 
   ngOnInit() {

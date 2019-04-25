@@ -1,4 +1,7 @@
 <div *ngIf="condition" class="row condition grid-container">
+  <div class="conjunction-view">
+    <ng-container *ngTemplateOutlet="conjunctionEditMode; context:{data: condition}"></ng-container>
+  </div>
   <div class="text-view">
     <ng-container *ngTemplateOutlet="keyEditMode; context:{data: condition}"></ng-container>
   </div>
@@ -12,7 +15,7 @@
     <button kendoButton icon="minus" look="flat" (click)="onRemoveClick(condition)"></button>
   </div>
   <div class="btn-add-view">
-    <button kendoButton icon="plus" look="flat" (click)="onAddClick(condition)"></button>
+    <button kendoButton icon="plus" look="flat" (click)="onAddConditionClick(condition)"></button>
   </div>
 </div>
 
@@ -21,21 +24,40 @@
     {{data.text}}
   </div>
   <kendo-contextmenu [target]="target" [items]="qbSvc.modelDataCurrent | async" showOn="click">
+    <ng-template kendoMenuItemTemplate let-dataItem="item">
+      {{dataItem.text}}
+      <span *ngIf="!(!!dataItem.items)">
+        <button kendoButton icon="plus" look="flat" (click)="onSelectKeyClick(dataItem, data)"></button>
+      </span>
+    </ng-template>
   </kendo-contextmenu>
 </ng-template>
 
 <ng-template #operatorEditMode let-data="data">
   <kendo-dropdownlist [(ngModel)]="data.operator"
+                      (valueChange)="operatorChange($event, data)"
                       [defaultItem]="defaultItem"
                       [data]="operatorList"
                       [textField]="'text'"
                       [valuePrimitive]="true"
-                      [valueField]="'value'" class="qb-dropdown">
+                      [valueField]="'value'" class="qb-operator-dropdown">
+  </kendo-dropdownlist>
+</ng-template>
+
+<ng-template #conjunctionEditMode let-data="data">
+  <kendo-dropdownlist                       
+                      
+                      [data]="conjunctionList"
+                      [textField]="'text'"
+                      [valuePrimitive]="true"
+                      [valueField]="'value'" class="qb-conjunction-dropdown">
   </kendo-dropdownlist>
 </ng-template>
 
 <ng-template #valueEditMode let-data="data">
-  <input kendoTextBox [(ngModel)]="data.value" class="qb-textbox"/>
+  <input #box kendoTextBox [(ngModel)]="data.value" class="qb-textbox"
+         (keyup.enter)="onValueChanged(box.value)"
+         (blur)="onValueChanged(box.value)" />
 </ng-template>
 
 
