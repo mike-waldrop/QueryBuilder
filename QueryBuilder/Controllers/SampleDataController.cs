@@ -15,9 +15,9 @@ namespace QueryBuilder.Controllers
   public class SampleDataController : ControllerBase
   {
 
-    [HttpGet("GetModel")]
+    [HttpGet("getModelMetaData")]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<ActionResult<string>> GetModel()
+    public async Task<ActionResult<string>> GetModelMetaData()
     {
       var settings = new JsonSerializerSettings
       {

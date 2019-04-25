@@ -1,38 +1,52 @@
 
 .grid-container {
   display: grid;
-  grid-template-columns: 100px 150px 140px 150px 30px 30px;
-  grid-template-rows: 1fr;
+  grid-template-columns: 50px 100px 140px 150px 30px 30px;
+  grid-template-rows: 30px;
   grid-template-areas: "conjunction-view text-view operator-view value-view btn-delete-view btn-add-view";
+  background-color: transparent;
 }
 
 .conjunction-view {
   grid-area: conjunction-view;
+  font-weight: bold;
+  
+  margin-right: 5px;
 }
 
 .text-view {
   grid-area: text-view;
+  background-color: rgba(219, 220, 209, 0.5);
+  margin-right: 5px;
 }
 
 .operator-view {
   grid-area: operator-view;
+  background-color: rgba(219, 220, 209, 0.5);
+  margin-right: 5px;
 }
 
 .value-view {
   grid-area: value-view;
+  background-color: rgba(219, 220, 209, 0.5);
+  margin-right: 5px;
 }
 
 .btn-delete-view {
   grid-area: btn-delete-view;
+  background-color: rgba(219, 220, 209, 0.5);
 }
 
 .btn-add-view {
   grid-area: btn-add-view;
+  background-color: rgba(219, 220, 209, 0.5);
 }
 
+.k-input{
+  height: 20px !important;
+}
 
 .condition {
-  background-color: rgba(219, 220, 209, 0.5);
   margin-bottom: 3px;
   border-radius: 5px;
   font-size: small;
@@ -55,10 +69,10 @@
   width: 120px;
 }
 
-/*.k-in {
-  width: 100% !important;
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
-
-.k-mid {
-  width: 100% !important;
-}*/

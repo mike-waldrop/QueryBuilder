@@ -1,17 +1,22 @@
-<!--<div>
-  <div class="condition row" *ngFor="let qm of (query | async)?.conditions; let i = index">
-    <div class="col">{{qm.key}}</div>
-    <div class="col">{{qm.operator}}</div>
-    <div class="col">{{qm.value}}</div>
-  </div>
-</div>-->
-
+<div style="font-weight:bold">
+  <span>Select records where</span>
+  <span><a #target href="javascript:void(0);"> {{query.conjunction == 'and' ? 'all' : 'any'}} </a></span>
+  <span>of the following apply</span>
+</div>
 <kendo-treeview textField="key"
                 [animate]="true"
-                [nodes]="(query | async)?.conditions"
+                [nodes]="query?.conditions"
                 kendoTreeViewHierarchyBinding
                 childrenField="conditions">
   <ng-template kendoTreeViewNodeTemplate let-dataItem>
     <query-builder-expression [condition]="dataItem"></query-builder-expression>
   </ng-template>
 </kendo-treeview>
+
+
+  <kendo-contextmenu [target]="target" [items]="conjunctionList" showOn="click">
+    <ng-template kendoMenuItemTemplate let-dataItem="item">
+      <span (click)="onConjunctionClick(dataItem);">{{dataItem.text}}</span>
+    </ng-template>
+  </kendo-contextmenu>
+

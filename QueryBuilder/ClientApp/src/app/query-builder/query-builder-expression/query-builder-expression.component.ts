@@ -1,9 +1,10 @@
 import { Component, OnInit, Input} from '@angular/core';
-import { Condition } from "src/app/query-builder/services/condition.model";
-import { Operators } from 'src/app/query-builder/services/operators.model';
+import { Condition } from "src/app/query-builder/models/condition.model";
+import { Operators } from 'src/app/query-builder/models/operators.model';
 import { Container } from '@angular/compiler/src/i18n/i18n_ast';
 import { QueryBuilderService } from 'src/app/query-builder/services/query-builder.service/query-builder.service';
-import { Conjunctions } from 'src/app/query-builder/services/conjunctions.model';
+import { Conjunctions } from 'src/app/query-builder/models/conjunctions.model';
+import { ModelMetaData } from 'src/app/query-builder/models/model-meta-data.model';
 
 @Component({
   selector: 'query-builder-expression',
@@ -14,8 +15,8 @@ export class QueryBuilderExpressionComponent implements OnInit {
   @Input() condition: Condition;
 
   conjunctionList: Array<{ text: string, value: Conjunctions }> = [
-    { text: "and", value: Conjunctions.and },
-    { text: "or", value: Conjunctions.or },
+    { text: "all", value: Conjunctions.and },
+    { text: "any", value: Conjunctions.or },
   ];
   
   operatorList: Array<{text:string ,value: Operators}> = [
@@ -40,7 +41,9 @@ export class QueryBuilderExpressionComponent implements OnInit {
     this.qbSvc.addNewCondition(event$);
   }
 
- onSelectKeyClick(model:any, selected: Condition) {
+  
+
+ onSelectKeyClick(model:ModelMetaData, selected: Condition) {
    selected.key = model.fullPath;
    selected.text = model.text;
    this.qbSvc.editCondition(selected);

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Condition } from 'src/app/query-builder/services/condition.model';
+import { Condition } from 'src/app/query-builder/models/condition.model';
 
 
 @Injectable({

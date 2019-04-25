@@ -4,8 +4,9 @@ import { Observable } from 'rxjs/Observable';
 import { QueryBuilderService } from 'src/app/query-builder/services/query-builder.service/query-builder.service';
 import { CheckableSettings, TreeItemLookup } from '@progress/kendo-angular-treeview';
 import { EventsService } from 'src/app/query-builder/services/events.service/events.service';
-import { Condition } from 'src/app/query-builder/services/condition.model';
-import { Operators } from 'src/app/query-builder/services/operators.model';
+import { Condition, ConditionArgs } from 'src/app/query-builder/models/condition.model';
+import { Operators } from 'src/app/query-builder/models/operators.model';
+import { ModelMetaData } from 'src/app/query-builder/models/model-meta-data.model';
 
 
 @Component({
@@ -15,23 +16,24 @@ import { Operators } from 'src/app/query-builder/services/operators.model';
 })
 export class QueryBuilderTreeComponent {
   
-  public data: any[];
+  public data: ModelMetaData[];
   public searchTerm = '';
-  public parsedData: any[] = this.data;
+  public parsedData: ModelMetaData[] = this.data;
       
   
   constructor(private qbSvc: QueryBuilderService, private eventsSvc: EventsService) { }
 
   ngOnInit(): void {
-    this.qbSvc.modelDataCurrent.subscribe(a => {
+    this.qbSvc.modelMetaDataCurrent.subscribe(a => {
       this.data = a;
       this.parsedData = this.data;
     });
   }
    
 
-  onAddClick(dataItem) {
-    var condition = new Condition(dataItem.text, dataItem.fullPath, Operators.EqualTo, "whatever");
+  onAddClick(dataItem: ModelMetaData) {
+    let args: ConditionArgs = {id: dataItem.id, text: dataItem.text, key: dataItem.fullPath, operator: Operators.EqualTo, value: "<empty>", type: dataItem.type } 
+    let condition = new Condition(args);
     this.qbSvc.addCondition(condition);
   }
      

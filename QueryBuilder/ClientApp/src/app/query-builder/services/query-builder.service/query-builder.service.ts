@@ -3,10 +3,12 @@ import { Injectable } from "@angular/core";
 //import { map, tap, catchError } from "rxjs";
 import { map, tap } from "rxjs/operators";
 import { Observable, BehaviorSubject } from "rxjs";
-import { Condition } from 'src/app/query-builder/services/condition.model';
-import { Query } from 'src/app/query-builder/services/query.model';
-import { Operators } from 'src/app/query-builder/services/operators.model';
+import { Condition } from 'src/app/query-builder/models/condition.model';
+import { Query } from 'src/app/query-builder/models/query.model';
+import { Operators } from 'src/app/query-builder/models/operators.model';
 import remove from 'lodash/remove';
+import { ModelMetaData } from "src/app/query-builder/models/model-meta-data.model";
+
 
 @Injectable({
   providedIn: 'root'
@@ -16,14 +18,13 @@ export class QueryBuilderService {
   private query: Query = new Query();
   private querySource = new BehaviorSubject<Query>(null);
   queryCurrent = this.querySource.asObservable();
-
-
-  private modelDataSource = new BehaviorSubject<any[]>([]);
-  modelDataCurrent = this.modelDataSource.asObservable();
+  
+  private modelMetaDataSource = new BehaviorSubject<ModelMetaData[]>([]);
+  modelMetaDataCurrent = this.modelMetaDataSource.asObservable();
 
   constructor(private http: HttpClient) {
     this.buildTestQuery();
-    this.getModel();
+    this.getModelMetaData();
   }
 
   addCondition(message: Condition) {
@@ -32,24 +33,27 @@ export class QueryBuilderService {
   }
 
   addNewCondition(parent: Condition) {
-    let newCondition = new Condition("<text>", "<key>", Operators.EqualTo, "<value>");
+    let newCondition = new Condition({ id: "<id>", text: "<text>", key: "<key>", operator: Operators.EqualTo, value: "<value>", type: "string" });
     parent.add(newCondition);
     this.querySource.next(this.query);
   }
 
   editCondition(message: Condition) {
-    let index = message.arrayOwner.indexOf(message);
+    let index = message.parent.conditions.indexOf(message);
     if (index !== -1) {
-      message.arrayOwner[index] = message;
+      message.parent.conditions[index] = message;
       this.querySource.next(this.query);
     }
+  }
 
+  editQuery(message: Query) {
+    this.querySource.next(message);
   }
 
   removeCondition(message: Condition) {
-    let index = message.arrayOwner.indexOf(message);
+    let index = message.parent.conditions.indexOf(message);
     if (index !== -1) {
-      message.arrayOwner.splice(index, 1);
+      message.parent.conditions.splice(index, 1);
     }
 
 
@@ -63,18 +67,14 @@ export class QueryBuilderService {
 
   private buildTestQuery() {
     var newQuery = new Query();
-
-    var condition1 = new Condition("color", "color-key", Operators.EqualTo, "red");
-    var condition2 = new Condition("dog", "dog-key", Operators.StartsWith, "rex");
-    var condition3 = new Condition("cat", "cat-key", Operators.IsInList, "fred");
-    var condition4 = new Condition("person", "person-key", Operators.Contains, "bob");
-    var condition5 = new Condition("xxx", "xxx-key", Operators.Contains, "yyy");
-
-
+    var condition1 = new Condition({ id: "color", text: "color", key: "color-key", operator: Operators.EqualTo, value: "red", type:"string"});
+    var condition2 = new Condition({ id: "dog",text: "dog", key: "dog-key", operator: Operators.StartsWith, value: "rex", type: "string"});
+    var condition3 = new Condition({ id: "cat", text: "cat", key: "cat-key", operator: Operators.IsInList, value: "fred", type: "string"});
+    var condition4 = new Condition({ id: "person", text: "person", key: "person-key", operator: Operators.Contains, value: "bob", type: "string"});
+    var condition5 = new Condition({ id: "xxx", text: "xxx", key: "xxx-key", operator: Operators.Contains, value: "yyy", type: "string"});
     condition2.add(condition3);
     condition2.add(condition4);
     condition4.add(condition5);
-
     newQuery.add(condition1);
     newQuery.add(condition2);
 
@@ -83,13 +83,13 @@ export class QueryBuilderService {
   }
 
 
-  getModel() {
-    const apiMethod = "GetModel";
-    this.http.get<any>(`/api/querybuilder/GetModel`, { withCredentials: true })
+  getModelMetaData() {
+    const apiMethod = "getModelMetaData";
+    this.http.get<any>(`/api/querybuilder/getModelMetaData`, { withCredentials: true })
       .pipe(
         tap(() => console.log(apiMethod)))
       .subscribe(s => {
-        this.modelDataSource.next(s);
+        this.modelMetaDataSource.next(s);
       });
   }
 }

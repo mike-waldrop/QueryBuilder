@@ -1,9 +1,10 @@
-﻿using System;
+﻿using QueryBuilder.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-
+using System.Text.RegularExpressions;
 
 namespace QueryBuilder.Shared
 {
@@ -23,28 +24,42 @@ namespace QueryBuilder.Shared
       foreach (var pi in type.GetProperties())
       {
         var newNode = new TreeNode();
-        newNode.Text = pi.Name;
-        newNode.FullPath += $"{td.FullPath}.{pi.Name}";
+        newNode.Text = HumanizePropertyName(pi.Name);
+        newNode.Id = pi.Name;
+        //newNode.FullPath += $"{td.FullPath}.{newNode.Id}";
         
         if (pi.PropertyType.IsClass && pi.PropertyType.Namespace != "System")
         {
           if (pi.PropertyType.IsArray)
           {
-            Create(pi.PropertyType.GetElementType(), newNode);
+            Type arrayChildrenType = pi.PropertyType.GetElementType();
+            newNode.Type = "array";
+            newNode.Text = $"{newNode.Text} []";
+            newNode.Id = $"{newNode.Id}[{arrayChildrenType.Name}]";
+            newNode.FullPath += $"{td.FullPath}.{newNode.Id}";
+            Create(arrayChildrenType, newNode);
           }
           else if (pi.PropertyType.IsClass)
           {
+            newNode.Type = "class";
+            newNode.FullPath += $"{td.FullPath}.{newNode.Id}";
             Create(pi.PropertyType, newNode);
           }
         }
         else
         {
           newNode.Items = null;
-          newNode.Type = pi.PropertyType.ToString();
+          newNode.FullPath += $"{td.FullPath}.{newNode.Id}";
+          newNode.Type = pi.PropertyType.ToString().Replace("System.", string.Empty);
         }
         td.Items.Add(newNode);
       }
       return td;
+    }
+
+    private static string HumanizePropertyName(string propName)
+    {
+      return Regex.Replace(propName, "(\\B[A-Z])", " $1");
     }
 
     //public static object Create(Type type)

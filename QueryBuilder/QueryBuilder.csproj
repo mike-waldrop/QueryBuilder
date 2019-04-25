@@ -26,6 +26,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\query-builder\models\conditions-list.ts" />
+    <None Remove="ClientApp\src\app\query-builder\models\model-meta-data.model.ts" />
     <None Remove="ClientApp\src\app\query-builder\services\conjunctions.model.ts" />
     <None Remove="ClientApp\src\app\query-builder\services\operators.model.ts" />
     <None Remove="ClientApp\src\app\query-builder\services\query.model.ts" />
@@ -33,9 +35,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\src\app\query-builder\services\conjunctions.model.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\query-builder\services\operators.model.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\query-builder\services\query.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\query-builder\models\conditions-list.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\query-builder\models\conjunctions.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\query-builder\models\operators.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\query-builder\models\query.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\query-builder\models\model-meta-data.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\shared\utilities.ts" />
   </ItemGroup>
 
