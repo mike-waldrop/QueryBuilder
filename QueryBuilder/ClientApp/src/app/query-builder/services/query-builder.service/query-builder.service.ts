@@ -35,8 +35,8 @@ export class QueryBuilderService {
 
   addNewCondition(parent: Condition) {
     let newCondition = new Condition({ id: "<id>", text: "<text>", key: "<key>", operator: Operators.EqualTo, value: "<value>", type: "string" });
-    if (parent.conditions.length == 0)
-      parent.conjunction = Conjunctions.and;
+    //if (parent.conditions.length == 0)
+    //  parent.conjunction = Conjunctions.and;
     parent.add(newCondition);
     this.querySource.next(this.query);
   }

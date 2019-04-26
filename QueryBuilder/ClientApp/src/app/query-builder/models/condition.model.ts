@@ -40,6 +40,8 @@ export class Condition {
 
   add(condition: Condition) {
     condition.parent = this;
+    if (condition.conditions.length == 0)
+      condition.conjunction = Conjunctions.and;
     this.conditions.push(condition);
   }
   
