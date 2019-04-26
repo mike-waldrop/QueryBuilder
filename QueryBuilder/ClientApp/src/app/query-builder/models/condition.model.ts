@@ -9,6 +9,7 @@ export interface ConditionArgs {
   operator: Operators;
   value: any;
   type: string;
+  conjunction?: Conjunctions;
 }
 
 export class Condition {

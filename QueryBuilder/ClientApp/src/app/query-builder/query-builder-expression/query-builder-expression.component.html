@@ -37,6 +37,13 @@
   </kendo-contextmenu>
 </ng-template>
 
+<kendo-contextmenu [target]="operatorTarget" [items]="operatorList" showOn="click" [anchorAlign]="left" [alignToAnchor]="true">
+  <ng-template kendoMenuItemTemplate let-dataItem="item">
+    <div (click)="onOperatorClick(dataItem);">{{dataItem.text}}</div>
+  </ng-template>
+</kendo-contextmenu>
+
+
 <kendo-contextmenu [target]="conjunctionTarget" [items]="conjunctionList" showOn="click"  [anchorAlign]="left" [alignToAnchor]="true">
   <ng-template kendoMenuItemTemplate let-dataItem="item">
     <div (click)="onConjunctionClick(dataItem);">{{dataItem.text}}</div>
@@ -44,14 +51,7 @@
 </kendo-contextmenu>
 
 <ng-template #operatorEditMode let-data="data">
-  <kendo-dropdownlist [(ngModel)]="data.operator"
-                      (valueChange)="operatorChange($event, data)"
-                      [defaultItem]="defaultItem"
-                      [data]="operatorList"
-                      [textField]="'text'"
-                      [valuePrimitive]="true"
-                      [valueField]="'value'" class="qb-operator-dropdown">
-  </kendo-dropdownlist>
+  <a #operatortarget href="javascript:void(0);">{{selectedOperator.text}}</a>
 </ng-template>
 
 <ng-template #conjunctionEditMode let-data="data">
@@ -70,7 +70,7 @@
 </ng-template>-->
 
 <ng-template #valueEditMode let-data="data">
-  <input #box kendoTextBox [(ngModel)]="data.value" class="qb-textbox"
+  <input #box [(ngModel)]="data.value" class="qb-textbox"
          (keyup.enter)="onValueChanged(box.value)"
          (blur)="onValueChanged(box.value)" />
 </ng-template>

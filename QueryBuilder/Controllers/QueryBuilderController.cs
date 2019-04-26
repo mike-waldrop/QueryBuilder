@@ -12,7 +12,7 @@ using QueryBuilder.Shared;
 namespace QueryBuilder.Controllers
 {
   [Route("api/querybuilder")]
-  public class SampleDataController : ControllerBase
+  public class QueryBuilderController : ControllerBase
   {
 
     [HttpGet("getModelMetaData")]

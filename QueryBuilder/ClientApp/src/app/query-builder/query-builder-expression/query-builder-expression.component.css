@@ -11,35 +11,36 @@
   grid-area: conjunction-view;
   font-weight: bold;
   
-  margin-right: 5px;
 }
 
 .text-view {
   grid-area: text-view;
   background-color: rgba(219, 220, 209, 0.5);
-  margin-right: 5px;
+  margin: 0px 5px 0px 0px;
 }
 
 .operator-view {
   grid-area: operator-view;
   background-color: rgba(219, 220, 209, 0.5);
-  margin-right: 5px;
+  margin: 0px 5px 0px 0px;
 }
 
 .value-view {
   grid-area: value-view;
   background-color: rgba(219, 220, 209, 0.5);
-  margin-right: 5px;
+  margin: 0px 5px 0px 0px;
 }
 
 .btn-delete-view {
   grid-area: btn-delete-view;
   background-color: rgba(219, 220, 209, 0.5);
+ 
 }
 
 .btn-add-view {
   grid-area: btn-add-view;
   background-color: rgba(219, 220, 209, 0.5);
+  
 }
 
 .k-input{

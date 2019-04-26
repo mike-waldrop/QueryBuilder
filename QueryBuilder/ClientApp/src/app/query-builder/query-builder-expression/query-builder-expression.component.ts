@@ -14,17 +14,19 @@ import { ModelMetaData } from 'src/app/query-builder/models/model-meta-data.mode
 export class QueryBuilderExpressionComponent implements OnInit {
   @Input() condition: Condition;
   @ViewChild('conjunctiontarget') conjunctionTarget: ElementRef;
-
-
+  @ViewChild('operatortarget') operatorTarget: ElementRef;
+    
   conjunctionList: Array<{ text: string, value: Conjunctions }> = [
     { text: "all", value: Conjunctions.and },
     { text: "any", value: Conjunctions.or },
   ];
-  
-  operatorList: Array<{text:string ,value: Operators}> = [
+
+  selectedOperator: { text: string, value: Operators };
+
+  operatorList: Array<{ text: string, value: Operators }> = [
+    { text: "Equal To", value: Operators.EqualTo },
     { text: "Contains", value: Operators.Contains },
     { text: "Does Not Contain", value: Operators.DoesNotContain },
-    { text: "Equal To", value: Operators.EqualTo },
     { text: "Is In List", value: Operators.IsInList },
     { text: "Is Not In List", value: Operators.IsNotInList },
     { text: "Not Equal To", value: Operators.NotEqualTo },
@@ -34,6 +36,10 @@ export class QueryBuilderExpressionComponent implements OnInit {
   public defaultItem: { text: string, value: Operators } = this.operatorList.find(v => v.value == Operators.EqualTo);
 
   constructor(private qbSvc: QueryBuilderService) { }
+
+  ngOnInit() {
+    this.selectedOperator = this.operatorList.find((t) => t.value == this.condition.operator);
+  }
 
   onRemoveClick(event$: Condition) {
     this.qbSvc.removeCondition(event$);
@@ -48,21 +54,22 @@ export class QueryBuilderExpressionComponent implements OnInit {
     this.qbSvc.editCondition(this.condition);
   }
 
+  onOperatorClick(dataItem: { text: string, value: Operators }) {
+    this.condition.operator = dataItem.value;
+    this.selectedOperator = dataItem;
+    this.qbSvc.editCondition(this.condition);
+  }
+
  onSelectKeyClick(model:ModelMetaData, selected: Condition) {
    selected.key = model.fullPath;
    selected.text = model.text;
    this.qbSvc.editCondition(selected);
   }
-
-  operatorChange($event, selected: Condition) {
-    this.qbSvc.editCondition(this.condition);
-  }
-
+  
   onValueChanged(data: string) {
     this.qbSvc.editCondition(this.condition);
   }
 
-  ngOnInit() {
-  }
+  
 
 }

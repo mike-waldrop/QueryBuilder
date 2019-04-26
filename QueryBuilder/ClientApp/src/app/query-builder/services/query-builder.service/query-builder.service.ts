@@ -70,11 +70,13 @@ export class QueryBuilderService {
 
   private buildTestQuery() {
     var newQuery = new Query();
-    var condition1 = new Condition({ id: "color", text: "color", key: "color-key", operator: Operators.EqualTo, value: "red", type: "string" });
-    var condition2 = new Condition({ id: "dog", text: "dog", key: "dog-key", operator: Operators.StartsWith, value: "rex", type: "string" });
-    var condition3 = new Condition({ id: "cat", text: "cat", key: "cat-key", operator: Operators.IsInList, value: "fred", type: "string" });
-    var condition4 = new Condition({ id: "person", text: "person", key: "person-key", operator: Operators.Contains, value: "bob", type: "string" });
-    var condition5 = new Condition({ id: "xxx", text: "xxx", key: "xxx-key", operator: Operators.Contains, value: "yyy", type: "string" });
+    var condition1 = new Condition({ id: "favoritecolor", text: "favorite color", key: "someobject.favoritecolor", operator: Operators.Contains, value: "red", type: "string" });
+    var condition2 = new Condition({ id: "myage", text: "my age", key: "someobject.myage", operator: Operators.EqualTo, value: "5", type: "Int32" });
+    var condition3 = new Condition({ id: "catsname", text: "cats name", key: "someobject.catsname", operator: Operators.StartsWith, value: "fred", type: "string" });
+    var condition4 = new Condition({ id: "todaysdate", text: "todays date", key: "someobject.todaysdate", operator: Operators.EqualTo, value: "1/12/1973", type: "DateTime" });
+    var condition5 = new Condition({ id: "istrue", text: "is true", key: "someobject.istrue", operator: Operators.EqualTo, value: "true", type: "Boolean" });
+
+    condition2.conjunction = Conjunctions.or;
     condition2.add(condition3);
     condition2.add(condition4);
     condition4.add(condition5);
