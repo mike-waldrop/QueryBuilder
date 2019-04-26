@@ -20,16 +20,16 @@ export class Condition {
   value: any;
   type: string;
   conditions: Condition[] = [];
-  _conjunction: Conjunctions = undefined;
+  conjunction: Conjunctions = undefined;
 
-  get conjunction(): Conjunctions {
-    if (this.conditions.length == 0)
-      this._conjunction = undefined;
-    return this._conjunction;
-  }
-  set conjunction(theBar: Conjunctions) {
-    this._conjunction = theBar;
-  }
+  //get conjunction(): Conjunctions {
+  //  if (this.conditions.length == 0)
+  //    this._conjunction = undefined;
+  //  return this._conjunction;
+  //}
+  //set conjunction(theBar: Conjunctions) {
+  //  this._conjunction = theBar;
+  //}
   
   constructor(args: ConditionArgs ) {
     for (let key in args) {

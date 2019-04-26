@@ -14,9 +14,9 @@
 </kendo-treeview>
 
 
-  <kendo-contextmenu [target]="target" [items]="conjunctionList" showOn="click">
+  <kendo-contextmenu [target]="target" [items]="conjunctionList" showOn="click" [anchorAlign]="left" [alignToAnchor]="true">
     <ng-template kendoMenuItemTemplate let-dataItem="item">
-      <span (click)="onConjunctionClick(dataItem);">{{dataItem.text}}</span>
+      <div (click)="onConjunctionClick(dataItem);">{{dataItem.text}}</div>
     </ng-template>
   </kendo-contextmenu>
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit, Input, ElementRef, ViewChild} from '@angular/core';
 import { Condition } from "src/app/query-builder/models/condition.model";
 import { Operators } from 'src/app/query-builder/models/operators.model';
 import { Container } from '@angular/compiler/src/i18n/i18n_ast';
@@ -13,6 +13,8 @@ import { ModelMetaData } from 'src/app/query-builder/models/model-meta-data.mode
 })
 export class QueryBuilderExpressionComponent implements OnInit {
   @Input() condition: Condition;
+  @ViewChild('conjunctiontarget') conjunctionTarget: ElementRef;
+
 
   conjunctionList: Array<{ text: string, value: Conjunctions }> = [
     { text: "all", value: Conjunctions.and },
@@ -41,7 +43,10 @@ export class QueryBuilderExpressionComponent implements OnInit {
     this.qbSvc.addNewCondition(event$);
   }
 
-  
+  onConjunctionClick(dataItem: { text: string, value: Conjunctions }) {
+    this.condition.conjunction = dataItem.value;
+    this.qbSvc.editCondition(this.condition);
+  }
 
  onSelectKeyClick(model:ModelMetaData, selected: Condition) {
    selected.key = model.fullPath;

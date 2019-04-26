@@ -18,17 +18,16 @@
     <button kendoButton icon="plus" look="flat" (click)="onAddConditionClick(condition)"></button>
   </div>
   <div *ngIf="condition.conditions.length > 0" style="font-weight:bold">
-    <span> {{condition.conjunction}}</span>
-    <span><a #target href="javascript:void(0);"> {{condition.conjunction == 'and' ? 'all' : 'any'}} </a></span>
+    <span><a #conjunctiontarget href="javascript:void(0);">{{condition.conjunction == 'and' ? 'all' : 'any'}} </a></span>
     <span>of the following apply</span>
   </div>
 </div>
 
 <ng-template #keyEditMode let-data="data">
-  <div #target>
-    <a href="javascript:void(0);">{{data.text}}</a>
+  <div>
+    <a #keytarget href="javascript:void(0);">{{data.text}}</a>
   </div>
-  <kendo-contextmenu [target]="target" [items]="qbSvc.modelMetaDataCurrent | async" showOn="click">
+  <kendo-contextmenu [target]="keytarget" [items]="qbSvc.modelMetaDataCurrent | async" showOn="click"  [anchorAlign]="left" [alignToAnchor]="true">
     <ng-template kendoMenuItemTemplate let-dataItem="item">
       {{dataItem.text}}
       <span *ngIf="!(!!dataItem.items)">
@@ -37,6 +36,12 @@
     </ng-template>
   </kendo-contextmenu>
 </ng-template>
+
+<kendo-contextmenu [target]="conjunctionTarget" [items]="conjunctionList" showOn="click"  [anchorAlign]="left" [alignToAnchor]="true">
+  <ng-template kendoMenuItemTemplate let-dataItem="item">
+    <div (click)="onConjunctionClick(dataItem);">{{dataItem.text}}</div>
+  </ng-template>
+</kendo-contextmenu>
 
 <ng-template #operatorEditMode let-data="data">
   <kendo-dropdownlist [(ngModel)]="data.operator"
@@ -49,8 +54,9 @@
   </kendo-dropdownlist>
 </ng-template>
 
-<ng-template  #conjunctionEditMode let-data="data">
-  <span *ngIf="data.parent.conditions.indexOf(data) > 0">{{data.conjunction}}</span>
+<ng-template #conjunctionEditMode let-data="data">
+  <span *ngIf="data.parent.conditions.indexOf(data) > 0" >{{data.parent.conjunction}}</span>
+  <!--<span *ngIf="data.parent.conditions.indexOf(data) > 0">{{data.conjunction}}</span>-->
 </ng-template>
 
 <!--<ng-template #conjunctionEditMode let-data="data">

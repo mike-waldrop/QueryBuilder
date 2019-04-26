@@ -29,8 +29,10 @@ export class QueryBuilderConditionsComponent implements OnInit {
   }
 
   onConjunctionClick(dataItem: { text: string, value: Conjunctions }) {
+    console.warn('fired old: %s new: %s time: %s', this.query.conjunction, dataItem.value, Date.now());
     this.query.conjunction = dataItem.value;
     this.qbSvc.editQuery(this.query);
+    
     //this.query.conditions.forEach(v => {
     //  v.conjunction = dataItem.value;
     //  this.qbSvc.editCondition(v);
